@@ -1,8 +1,9 @@
 {
     "name": "message-bus",
     "description": "An implementation of resque based message bus.",
+    "main": "./lib/main",
     "author": "Chiyan Chen",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "repository" : {
         "type" : "git",
         "url" : "https://github.com/redblaze/message-bus.git"
