@@ -29,18 +29,27 @@ var mb = new MessageBus({
     ]
 });
 
+
+var tick = function() {
+    var i = 0;
+    return function() {
+        return i++ % 20;
+    };
+}();
+
 mb.addListener('test:foobar100', function(args, cb) {
     console.log('===== start with args: ', args, '========');
     setTimeout(function(){
         console.log('===== finish with args: ', args, '========');
-        if (args.length > 4) {
-            // cb(new Error('greater than 4'));
-            cb();
+        if (tick() > 5) {
+            cb(new Error('fail 10'));
+            // cb();
         } else {
             cb();
         }
     }, 1000);
 }, 5);
+
 
 setTimeout(function() {
     console.log('start to stop message bus');
@@ -54,7 +63,7 @@ setTimeout(function() {
         }
     ], cb);
 
-}, 2 * 1000);
+}, 1000 * 1000);
 
 /*
 mb.addListener('test:foobar100', function(args, cb) {

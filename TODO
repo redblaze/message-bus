@@ -1,4 +1,0 @@
-* Add API to garbage collect entries with "done" status
-* Add API to retry entries with "failed" status
-* Add timestamp to entries
-  - Timeout entries.
