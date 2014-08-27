@@ -93,6 +93,12 @@ to exist in the database specified in the configuration object.  For resque, we 
 
 #### messageBus.fire(event, args, callback)
 
+* event: a String
+* args: the payload object of the event.  It will be passed into the listener function.
+* callback: a callback function to continue with the rest of the program flow.
+
+This API fires an consumable event to the message bus, which will be handled by registered listeners of this particular event.  Note that this is NOT a pub/sub model, in that the event is consumable.  Once it is handled by one of the listeners, it is consumed and no other listeners will receive it.
+
 #### messageBus.addListener(event, handler_procedure, number_of_concurrency)
 
 #### messageBus.stop(callback)
