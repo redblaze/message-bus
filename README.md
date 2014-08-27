@@ -17,14 +17,14 @@ var MessgeBus = require('message-bus');
 
 ### APIs
 
-* [new MessageBus](#new-Message)
+* [new MessageBus](#new-MessageBus)
 * messageBus.fire
 * messageBus.addListener
 * messageBus.stop
 * messageBus.garbageCollect
 * messageBus.retry
 
-<a name='new-Message'/>
+<a name='new-MessageBus'></a>
 #### new MessageBus(cfg)
 
 This creates a message bus instance.  The configuration object is of the following format:
