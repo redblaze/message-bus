@@ -26,11 +26,11 @@ var MessgeBus = require('message-bus');
 
 #### new MessageBus(cfg)
 
-### messageBus.fire(event, args, callback)
+#### messageBus.fire(event, args, callback)
 
-### messageBus.addListener(event, handler_procedure, number_of_concurrency)
+#### messageBus.addListener(event, handler_procedure, number_of_concurrency)
 
-### messageBus.stop(callback)
+#### messageBus.stop(callback)
 
 ### messageBus.garbageCollect(callback)
 
