@@ -58,7 +58,7 @@ Please refer to the following packages:
 * [mysql](https://www.npmjs.org/package/mysql)
 * [coffee-resque](https://www.npmjs.org/package/coffee-resque)
 
-for the format of the mysql configuration and coffee-resque configuration included in messge-bus configuration.
+for the format of the mysql configuration and coffee-resque configuration included in messge-bus configuration.  The configuration field "retry_limit" will be used in the [retry](#messageBus-retry) API.
 
 __Example__
 ```js
@@ -75,7 +75,8 @@ var mb = new MessageBus({
             "port": 6379,
             "timeout": 3000
         }
-    ]
+    ],
+    retry_limit: 10
 });
 ```
 
@@ -150,9 +151,10 @@ __Example__
 mb.garbageCollect(cb);
 ```
 
+<a name='messageBus-retry'></a>
 ####  messageBus.retry(callback)
 
-This API retries the messages that had failed with recoverable errors.  It is usually used in a cron job to increase the reliability of the message bus.  The number of retries before declaring fatal can be configured in the [constructor](#new-MessageBus), the default value of which is 5.
+This API retries the messages that had failed with recoverable errors.  It is usually used in a cron job to increase the reliability of the message bus.  The number of retries before declaring fatal can be configured in the [constructor](#new-MessageBus) with the field "retry_limit", the default value of which is 5.
 
 __Example__
 ```js
