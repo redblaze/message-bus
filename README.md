@@ -31,7 +31,7 @@ This creates a message bus instance.  The configuration object is of the followi
 
 ```json
 {
-    "type": "Object"
+    "type": "Object",
     "fields": {
         "mysql_config": {
             "type": "Alias",
