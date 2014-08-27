@@ -43,6 +43,11 @@ This creates a message bus instance.  The configuration object is of the followi
                 "type": "Alias",
                 "alias": "COFFEE_RESQUE_CONFIG"
             }
+        },
+        "retry_limit": {
+            "type": "Number"
+            "nullable": true,
+            "default": 5
         }
     }
 }
@@ -108,7 +113,7 @@ mb.fire('test:foobar100', {foo: 'bar', text: 'This is the payload.'}, cb);
 
 * event: a string that represents an event.
 * handler_procedure: the handler procedure of the event.
-* number_of_concurrency: the number of concurrent threads that are allowed to process the event stream simultaneously.
+* number_of_concurrency: the number of concurrent threads that are allowed to process the event stream simultaneously.  This parameter is optional with a default value to be 1.
 
 This API attaches a listener to an event.  When the event is fired, this listener will be invoked if the event is consumed by it.
 
@@ -138,6 +143,21 @@ mb.stop(cb);
 
 #### messageBus.garbageCollect(callback)
 
+This API performs garbage collection on the mysql database.  It sweeps out all the messages that are either done, or had failed with fatal errors.  This API is usually used in a cron job to clean up the message bus mysql storage periodically.
+
+__Example__
+```js
+mb.garbageCollect(cb);
+```
+
 ####  messageBus.retry(callback)
+
+This API retries the messages that had failed with recoverable errors.  It is usually used in a cron job to increase the reliability of the message bus.  The number of retries before declaring fatal can be configured in the [constructor](#new-MessageBus), the default value of which is 5.
+
+__Example__
+```js
+mb.retry(cb);
+```
+
 
 
