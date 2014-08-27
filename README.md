@@ -17,13 +17,14 @@ var MessgeBus = require('message-bus');
 
 ### APIs
 
-* new MessageBus
+* [new MessageBus](#new-Message)
 * messageBus.fire
 * messageBus.addListener
 * messageBus.stop
 * messageBus.garbageCollect
 * messageBus.retry
 
+<a name='new-Message'/>
 #### new MessageBus(cfg)
 
 #### messageBus.fire(event, args, callback)
