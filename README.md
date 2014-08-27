@@ -18,11 +18,11 @@ var MessgeBus = require('message-bus');
 ### APIs
 
 * [new MessageBus](#new-MessageBus)
-* messageBus.fire
-* messageBus.addListener
-* messageBus.stop
-* messageBus.garbageCollect
-* messageBus.retry
+* [messageBus.fire](#messageBus-fire)
+* [messageBus.addListener](#messageBus-addListener)
+* [messageBus.stop](#messageBus.stop)
+* [messageBus.garbageCollect](#messageBus.garbageCollect)
+* [messageBus.retry](#messageBus.retry)
 
 <a name='new-MessageBus'></a>
 #### new MessageBus(cfg)
@@ -97,6 +97,7 @@ create table if not exists tasks (
 
 to exist in the database specified in the configuration object.  For resque, we allow muliple queues to be included in the configuration, which will be used in a round-robin fashion to increased the availability and stability of the message bus.  Specifically, if one resque fails, the message load will be falling back to the rest resque(s).
 
+<a name="messageBus-fire"/>
 #### messageBus.fire(event, args, callback)
 
 * event: a string that represents an event.
@@ -109,7 +110,7 @@ __Example__
 ```js
 mb.fire('test:foobar100', {foo: 'bar', text: 'This is the payload.'}, cb);
 ```
-
+<a name="messageBus-addListener"/>
 #### messageBus.addListener(event, handler_procedure, number_of_concurrency)
 
 * event: a string that represents an event.
@@ -127,7 +128,7 @@ mb.addListener('test:foobar100', function(args, cb) {
     }, 1000);
 }, 5);
 ````
-
+<a name="messageBus-stop"/>
 #### messageBus.stop(callback)
 
 This API shuts down the message bus and clean up resources.  It
@@ -141,7 +142,7 @@ __Example__
 mb.stop(cb);
 ```
 
-
+<a name="messageBus-garbageCollect"/>
 #### messageBus.garbageCollect(callback)
 
 This API performs garbage collection on the mysql database.  It sweeps out all the messages that are either done, or had failed with fatal errors.  This API is usually used in a cron job to clean up the message bus mysql storage periodically.
