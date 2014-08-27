@@ -124,8 +124,20 @@ mb.addListener('test:foobar100', function(args, cb) {
 
 #### messageBus.stop(callback)
 
-### messageBus.garbageCollect(callback)
+This API shuts down the message bus and clean up resources.  It
 
-### messageBus.retry(callback)
+* drains the currently running handlers (by allowing them to finish);
+* tears down the mysql connections;
+* tears down the resque connections.
 
-### 
+__Example__
+```js
+mb.stop(cb);
+```
+
+
+#### messageBus.garbageCollect(callback)
+
+####  messageBus.retry(callback)
+
+
