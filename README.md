@@ -93,13 +93,34 @@ to exist in the database specified in the configuration object.  For resque, we 
 
 #### messageBus.fire(event, args, callback)
 
-* event: a String
+* event: a string that represents an event.
 * args: the payload object of the event.  It will be passed into the listener function.
 * callback: a callback function to continue with the rest of the program flow.
 
-This API fires an consumable event to the message bus, which will be handled by registered listeners of this particular event.  Note that this is NOT a pub/sub model, in that the event is consumable.  Once it is handled by one of the listeners, it is consumed and no other listeners will receive it.
+This API fires an consumable event to the message bus, which will be handled by registered listeners of this particular event.  Note that this is NOT a pub/sub model, in that the event is consumable.  Once it is handled by one of the listeners, it is consumed and no other listeners will further receive it.
+
+__Example__
+```js
+mb.fire('test:foobar100', {foo: 'bar', text: 'This is the payload.'}, cb);
+```
 
 #### messageBus.addListener(event, handler_procedure, number_of_concurrency)
+
+* event: a string that represents an event.
+* handler_procedure: the handler procedure of the event.
+* number_of_concurrency: the number of concurrent threads that are allowed to process the event stream simultaneously.
+
+This API attaches a listener to an event.  When the event is fired, this listener will be invoked if the event is consumed by it.
+
+__Example__
+```js
+mb.addListener('test:foobar100', function(args, cb) {
+    console.log('start to process args: ', args);
+    setTimeout(function(){
+        console.log('finish to process args: ', args);
+    }, 1000);
+}, 5);
+````
 
 #### messageBus.stop(callback)
 
