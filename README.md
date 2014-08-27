@@ -34,7 +34,7 @@ This creates a message bus instance.  The configuration object is of the followi
     "type": "Object"
     "fields": {
         "mysql_config": {
-            "type": "Alias"
+            "type": "Alias",
             "alias": "MYSQL_CONFIG"
         },
         "resque_configs": {
@@ -45,7 +45,7 @@ This creates a message bus instance.  The configuration object is of the followi
             }
         },
         "retry_limit": {
-            "type": "Number"
+            "type": "Number",
             "nullable": true,
             "default": 5
         }
