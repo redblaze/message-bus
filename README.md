@@ -74,14 +74,9 @@ var mb = new MessageBus({
 });
 ```
 
-A message bus relies on two types of storage: mysql and redis, where mysql is used to store the message body and redis is used to trigger the listeners registered on the message.  For the mysql storage, we enforce the following schema:
+A message bus relies on two types of storage: mysql and resque, where mysql is used to store the message body and resque is used to trigger the listeners registered on the message.  For the mysql storage, we enforce the following schema:
 
 ```sql
-drop database if exists `message_bus`;
-create database `message_bus`;
-use `message_bus`;
-
-drop table if exists tasks;
 create table if not exists tasks (
   id bigint(20) not null primary key auto_increment,
   version bigint(20) not null default 0,
@@ -93,6 +88,8 @@ create table if not exists tasks (
   retry_times int(11) not null default 0
 );
 ```
+
+to exist in the database specified in the configuration object.  For resque, we allow muliple queues to be included in the configuration, which will be used in a round-robin fashion to increased the availability and stability of the message bus.  Specifically, if one resque fails, the message load will be falling back to the rest resque(s).
 
 #### messageBus.fire(event, args, callback)
 
