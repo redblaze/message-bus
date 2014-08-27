@@ -20,9 +20,9 @@ var MessgeBus = require('message-bus');
 * [new MessageBus](#new-MessageBus)
 * [messageBus.fire](#messageBus-fire)
 * [messageBus.addListener](#messageBus-addListener)
-* [messageBus.stop](#messageBus.stop)
-* [messageBus.garbageCollect](#messageBus.garbageCollect)
-* [messageBus.retry](#messageBus.retry)
+* [messageBus.stop](#messageBus-stop)
+* [messageBus.garbageCollect](#messageBus-garbageCollect)
+* [messageBus.retry](#messageBus-retry)
 
 <a name='new-MessageBus'></a>
 #### new MessageBus(cfg)
